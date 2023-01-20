@@ -44,21 +44,14 @@ ArrayList<Product> products;
         binding=ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
       initCategories();
       initProducts();
       initSlider();
 
     }
-
     private void initSlider() {
-        binding.carousel.addData(new CarouselItem("https://i.pinimg.com/564x/39/74/6e/39746eea29ef15a08a05e9365c2d6be4.jpg","Some captions here"));
-        binding.carousel.addData(new CarouselItem("https://i.pinimg.com/236x/f9/f8/48/f9f848b6a9e164a865849b18e3dae29f.jpg","Some captions here"));
-        binding.carousel.addData(new CarouselItem("https://i.pinimg.com/564x/90/50/f2/9050f210aae7812b97eae66666a160a6.jpg","Some captions here"));
-        binding.carousel.addData(new CarouselItem("https://i.pinimg.com/564x/40/fc/13/40fc13aced8c7e575e585cf5e765cb56.jpg","Some captions here"));
-        binding.carousel.addData(new CarouselItem("https://i.pinimg.com/564x/6a/ee/f6/6aeef641a93514f541415c80fa88aee9.jpg","Some captions here"));
+        recentOffers();
     }
-
     void initCategories(){
 
         categories=new ArrayList<>();
@@ -150,7 +143,40 @@ ArrayList<Product> products;
         });
         queue.add(request);
     }
+    void  recentOffers(){
+        RequestQueue queue=Volley.newRequestQueue(this);
+        StringRequest request=new StringRequest(Request.Method.GET, Constants.GET_OFFERS_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object=new JSONObject(response);
+                    if(object.getString("status").equals("success")){
+                        JSONArray offerArray=object.getJSONArray("news_infos");
+                        for (int i=0;i<offerArray.length();i++){
+                            JSONObject childObject=offerArray.getJSONObject(i);
+                            binding.carousel.addData(
+                                    new CarouselItem
+                                    ( Constants.NEWS_IMAGE_URL + childObject.getString("image"),
+                                    childObject.getString("title"))
+                            );}
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+
+        });
+        queue.add(request);
+
+    }
     void initProducts(){
 
         products=new ArrayList<>();
