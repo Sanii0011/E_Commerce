@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardCornerRadius="10dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp">
+
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:orientation="vertical">
+
+
+    <LinearLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Product Name"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_weight="1"
+        android:id="@+id/productName"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="0"
+        android:id="@+id/productStock"
+        android:gravity="right"
+        android:layout_marginLeft="50dp"/>
+
+</LinearLayout>
+
+
+    <LinearLayout
+    android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:background="#E6E6E6">
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="-"
+        android:id="@+id/minusBtn"
+        android:background="@color/orange"
+        android:textSize="22sp"
+        android:fontFamily="@font/roboto_bold"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="1"
+        android:layout_weight="1"
+        android:id="@+id/quantity"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:fontFamily="@font/roboto_bold"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="+"
+        android:id="@+id/plusBtn"
+        android:background="@color/orange"
+        android:textSize="22sp"
+        android:fontFamily="@font/roboto_bold"/>
+
+</LinearLayout>
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Save"
+        android:id="@+id/saveBtn"
+        android:layout_gravity="right"/>
+
+</LinearLayout>
+
+</androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
